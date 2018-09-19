@@ -21,8 +21,6 @@ args <- args_parser()
 
 library(DataPreparation)
 library(Modeling)
-# devtools::load_all(file.path(script_path, "../packages/DataPreparation"))
-# devtools::load_all(file.path(script_path, "../packages/Modeling"))
 
 # Force using local Python environment
 reticulate::use_python(python = file.path(script_path, "..", "conda"), require = TRUE)

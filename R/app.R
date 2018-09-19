@@ -20,7 +20,5 @@ args <- args_parser()
 ###############################################################################
 
 library(Application)
-# devtools::load_all(file.path(script_path, "../packages/Application"))
 
 runApplication(ui, server, port = 4605)
-

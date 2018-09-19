@@ -1,8 +1,11 @@
+#'
+#' Prepare model architecture
+#'
+#' @return Keras sequential model object with defined layers
+#' 
 #' @export
+#' 
 defineModelArchitecture <- function() {
-  # INPUT: none
-  # OPERATIONS: define model architecture
-  # OUTPUT: Keras sequential model object with defined layers
 
   model_architecture <- keras_model_sequential() %>%
     layer_conv_2d(filters = 20, kernel_size = c(5, 5), strides = c(1, 1), input_shape = c(28, 28, 1)) %>%
@@ -16,9 +19,17 @@ defineModelArchitecture <- function() {
   return (model_architecture)
 }
 
+#'
+#' Compile keras model
+#'
+#' @param model Keras sequential model object with defined layers
+#' 
+#' @return Compiled Keras model
+#' 
 #' @export
+#' 
 compileModel <- function(model) {
-  # INPUT: Keras sequential model object with defined layers
+  # INPUT: 
   # OPERATIONS: compile the model
   # OUTPUT: compiled Keras model
 
@@ -30,11 +41,20 @@ compileModel <- function(model) {
   return(model)
 }
 
+
+#'
+#' Fit model parameters
+#'
+#' @param model compiled keras model
+#' @param data training and validation data (output of splitDataset function)
+#' @param epochs number of epochs
+#' @param batch_size mini-batch size
+#'
+#' @return Fitted keras model
+#'
 #' @export
+#'
 trainModel <- function(model, data, epochs = 30, batch_size = 256) {
-  # INPUT: compiled Keras model, training and validation data (output of splitDataset function), number of epochs and mini-batch size
-  # OPERATIONS: train the model
-  # OUTPUT: Keras model with calculated weigths
 
   model %>% fit(data$data_tensor$train,
     data$labels$train,
@@ -45,23 +65,35 @@ trainModel <- function(model, data, epochs = 30, batch_size = 256) {
   return(model)
 }
 
+#'
+#' Calculate model accuracy.
+#'
+#' @param model fitted keras model
+#' @param data data tensor N x 28 x 28 x 1
+#' @param labels label one-hot encoded matrix
+#' @param batch_size mini-batch size
+#' 
+#' @return Accuracy as percentage of properly classified examples
+#' 
 #' @export
+#' 
 calculateAccuracy <- function(model, data, labels) {
-  # INPUT: Keras model, data tensor N x 28 x 28 x 1, label one-hot encoded matrix
-  # OPERATIONS: calculate classification accuracy
-  # OUTPUT: accuracy
-
   acc <- evaluate(model, data, labels)$acc
 
   return(acc)
 }
 
+#'
+#' Give model a name in the format "model_YYYYMMDD_HHMMSS" and save it to a given directory in HDF5 format
+#'
+#' @param model keras model
+#' @param model_created timestamp when the model was created
+#' @param save_path a path to the folder where model should be saved
+#'
+#'
 #' @export
-saveModel <- function(model, model_created, save_path = file.path(script_path, "..", "models")) {
-  # INPUT: Keras model, timestamp when the model was created, a path to the folder where model should be saved
-  # OPERATIONS: give model a name in the format "model_YYYYMMDD_HHMMSS" and save it to a given directory in HDF5 format
-  # OUTPUT: none
-
+#' 
+saveModel <- function(model, model_created, save_path) {
   dir.create(save_path, showWarnings = FALSE)
 
   model_name <- paste0("model_", gsub(" ", "_", gsub("-|:", "", as.character(model_created))))
@@ -71,14 +103,17 @@ saveModel <- function(model, model_created, save_path = file.path(script_path, "
   pkg_loginfo("Model '%s' saved.", model_name)
 }
 
+#'
+#' Load model from a disk
+#'
+#' @param fpath path to the HDF5 file containing the model
+#'
+#' @return Loaded Keras model
+#'
 #' @export
+#' 
 loadModel <- function(fpath) {
-  # INPUT: path to the HDF5 file containing the model
-  # OPERATIONS: load the model
-  # OUTPUT: Keras model
-
   model <- load_model_hdf5(fpath)
 
   return(model)
 }
-
