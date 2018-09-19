@@ -1,0 +1,12 @@
+Package: DataPreparation
+Type: Package
+Title: What the package does (short line)
+Version: 0.1
+Date: 2018-09-10
+Author: pchab
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
+Imports: logging, tensorflow, keras, abind
+SystemRequirements: conda (python=3.6.6 tensorflow=1.10.0 keras=2.2.2 pillow=5.2.0)
+RoxygenNote: 6.1.0

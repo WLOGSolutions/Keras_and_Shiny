@@ -1,0 +1,3 @@
+LogLevel: INFO
+data_path: <path_to_mnist_png_folder>
+train_fraction: 0.83

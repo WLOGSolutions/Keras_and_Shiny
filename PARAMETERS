@@ -1,0 +1,5 @@
+RSuiteVersion: 0.32.245
+RVersion: 3.5
+Project: Keras_and_Shiny
+Repositories: MRAN[2018-09-05]
+Artifacts: config_templ.txt, conda
