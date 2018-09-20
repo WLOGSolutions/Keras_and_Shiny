@@ -8,6 +8,6 @@
 #' @import tensorflow
 #' @import keras
 #' @import shiny
-#' @import DataPreparation
-#' @import Modeling
+#' @importFrom DataPreparation loadAndPrepareImage normalizePixelIntensities
+#' @importFrom Modeling loadModel
 NULL

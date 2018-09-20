@@ -61,14 +61,3 @@ predictProbabilities <- function(model, data_tensor) {
 
     return(prob_df)
 }
-
-# Re-exports:
-
-#' @export
-Modeling::loadModel
-
-#' @export
-DataPreparation::loadAndPrepareImage
-
-#' @export
-DataPreparation::normalizePixelIntensities
