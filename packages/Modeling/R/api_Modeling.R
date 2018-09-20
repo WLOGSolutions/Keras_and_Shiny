@@ -1,10 +1,10 @@
 #'
-#' Prepare model architecture
+#' Prepare model architecture.
 #'
 #' @return Keras sequential model object with defined layers
-#' 
+#'
 #' @export
-#' 
+#'
 defineModelArchitecture <- function() {
 
   model_architecture <- keras_model_sequential() %>%
@@ -20,18 +20,15 @@ defineModelArchitecture <- function() {
 }
 
 #'
-#' Compile keras model
+#' Compile keras model.
 #'
 #' @param model Keras sequential model object with defined layers
-#' 
-#' @return Compiled Keras model
-#' 
+#'
+#' @return compiled Keras model
+#'
 #' @export
-#' 
+#'
 compileModel <- function(model) {
-  # INPUT: 
-  # OPERATIONS: compile the model
-  # OUTPUT: compiled Keras model
 
   model %>% compile(
     optimizer = optimizer_sgd(lr = 0.01),
@@ -43,14 +40,14 @@ compileModel <- function(model) {
 
 
 #'
-#' Fit model parameters
+#' Fit model parameters.
 #'
 #' @param model compiled keras model
 #' @param data training and validation data (output of splitDataset function)
 #' @param epochs number of epochs
 #' @param batch_size mini-batch size
 #'
-#' @return Fitted keras model
+#' @return fitted keras model
 #'
 #' @export
 #'
@@ -71,12 +68,11 @@ trainModel <- function(model, data, epochs = 30, batch_size = 256) {
 #' @param model fitted keras model
 #' @param data data tensor N x 28 x 28 x 1
 #' @param labels label one-hot encoded matrix
-#' @param batch_size mini-batch size
-#' 
+#'
 #' @return Accuracy as percentage of properly classified examples
-#' 
+#'
 #' @export
-#' 
+#'
 calculateAccuracy <- function(model, data, labels) {
   acc <- evaluate(model, data, labels)$acc
 
@@ -84,15 +80,14 @@ calculateAccuracy <- function(model, data, labels) {
 }
 
 #'
-#' Give model a name in the format "model_YYYYMMDD_HHMMSS" and save it to a given directory in HDF5 format
+#' Give model a name in the format "model_YYYYMMDD_HHMMSS" and save it to a given directory in HDF5 format.
 #'
 #' @param model keras model
 #' @param model_created timestamp when the model was created
 #' @param save_path a path to the folder where model should be saved
 #'
-#'
 #' @export
-#' 
+#'
 saveModel <- function(model, model_created, save_path) {
   dir.create(save_path, showWarnings = FALSE)
 
@@ -104,14 +99,14 @@ saveModel <- function(model, model_created, save_path) {
 }
 
 #'
-#' Load model from a disk
+#' Load model from the disk.
 #'
 #' @param fpath path to the HDF5 file containing the model
 #'
-#' @return Loaded Keras model
+#' @return loaded Keras model
 #'
 #' @export
-#' 
+#'
 loadModel <- function(fpath) {
   model <- load_model_hdf5(fpath)
 

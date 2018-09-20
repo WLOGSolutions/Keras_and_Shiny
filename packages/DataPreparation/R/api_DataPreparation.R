@@ -1,12 +1,12 @@
 #'
-#' reads the file and converts it into grayscale pixel intensity tensor
+#' Reads the file and converts it into grayscale pixel intensity tensor.
 #'
-#' @param image_fpath PNG image file path (28 x 28, grayscale)
+#' @param image_fpath PNG image file path (28 x 28, grayscale).
 #'
-#' @return tensor with dimensions 28 x 28 x 1
-#' 
+#' @return tensor with dimensions 28 x 28 x 1.
+#'
 #' @export
-#' 
+#'
 loadAndPrepareImage <- function(image_fpath) {
     assert(file.exists(image_fpath), "Invalid image file path.")
 
@@ -17,15 +17,15 @@ loadAndPrepareImage <- function(image_fpath) {
 }
 
 #'
-#' reading consecutive files, converting to a pixel intensity tensor and appending them to a single tensor which eventually should contain all read numbers, one after another. Additionally, creating a vector with respective labels "0" to "9"
+#' Reading consecutive files, converting to a pixel intensity tensor and appending them to a single tensor which eventually should contain all read numbers, one after another. Additionally, creating a vector with respective labels "0" to "9".
 #'
 #' @param data_path a path to the folder with data and the subfolder name (one of: "training", "testing")
 #' @param subfolder_name "training" and "testing" subfolders should contain another level of subfolders, labelled 0-9 with the examples (28 x 28 grayscale PNG images) of respective handwritten digits
 #'
-#' @return a two-element list: 1) "data_tensor": a 4D tensor with dimensions [number_of_images x 28 x 28 x 1] containing pixel intensities of all numbers and 2) "labels": a character vector containing respective labels.
-#' 
+#' @return a two-element list: 1) "data_tensor": a 4D tensor with dimensions [number_of_images x 28 x 28 x 1] containing pixel intensities of all numbers and 2) "labels": a character vector containing respective labels
+#'
 #' @export
-#' 
+#'
 getAllImages <- function(data_path, subfolder_name) {
     assert(subfolder_name %in% c("training", "testing"),
            "subfolder name should be one of: 'training', 'testing'.")
@@ -65,14 +65,14 @@ getAllImages <- function(data_path, subfolder_name) {
 }
 
 #'
-#' normalize intensities to the scale 0-1
+#' Normalize intensities to the scale 0-1.
 #'
 #' @param data_tensor pixel intensities data tensor (values in 0-255)
 #'
 #' @return normalized pixel intensities data tensor (values in [0, 1])
-#' 
+#'
 #' @export
-#' 
+#'
 normalizePixelIntensities <- function(data_tensor) {
   data_tensor <- data_tensor / 255
 
@@ -80,12 +80,12 @@ normalizePixelIntensities <- function(data_tensor) {
 }
 
 #'
-#' convert a label vector into one-hot encoded label matrix
+#' Convert a label vector into one-hot encoded label matrix.
 #'
-#' @param labels a character vector with labels
+#' @param labels A character vector with labels.
 #'
-#' @return one-hot encoded label matrix
-#' 
+#' @return One-hot encoded label matrix.
+#'
 #' @export
 #'
 convertLabels <- function(labels) {
@@ -95,15 +95,15 @@ convertLabels <- function(labels) {
 }
 
 #'
-#' splitting input dataset (both data and labels) into training and validation subset using the provided fraction parameter to determine the proportion
+#' Split input dataset (both data and labels) into training and validation subset using the provided fraction parameter to determine the proportion.
 #'
-#' @param data named list containing training/validation dataset ("$data") and labels ("$labels").
-#' @param training_fraction split ratio train/test
-#' 
+#' @param data named list containing training/validation dataset ("$data") and labels ("$labels")
+#' @param training_fraction a fraction of dataset to be used as training subset
+#'
 #' @return named list with training subset and labels and validation subset and labels
-#' 
+#'
 #' @export
-#' 
+#'
 splitDataset <- function(data, training_fraction = 0.75) {
     assert(training_fraction > 0 & training_fraction < 1, "training_fraction has to be between 0 and 1.")
 
