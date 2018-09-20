@@ -30,7 +30,7 @@ server <- function(input, output){
   })
   output$pred_probs <- renderTable({
     probs_to_print <- probs()
-    probs_to_print$probability <- as.character(probs_to_print$probability)
+    probs_to_print$Probability <- as.character(probs_to_print$Probability)
     probs_to_print
   })
 }
