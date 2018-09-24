@@ -24,6 +24,7 @@ library(Modeling)
 
 # Force using local Python environment
 reticulate::use_python(python = file.path(script_path, "..", "conda"), require = TRUE)
+loginfo("Python initialized")
 
 ### 1. DATA PREPARATION
 
