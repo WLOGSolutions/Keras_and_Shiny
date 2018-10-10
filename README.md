@@ -1,7 +1,8 @@
 # Showcase: the power of combining [GNU R](https://www.r-project.org/ "GNU R") and [Python](https://www.python.org/ "Python"). How to build deeplearning model for digit recognition using [Keras](https://keras.rstudio.com/) and deploy it as a [Shiny app](https://shiny.rstudio.com/ "Shiny app") with [R Suite](https://rsuite.io).
 
+## Table of Contents
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
 
 - [Introduction](#introduction)
 - [Preliminary requirements](#preliminary-requirements)
@@ -103,7 +104,7 @@ In a web browser, under [http://localhost:4605](http://localhost:4605), we shoul
 
 The app allows to read the HDF5 model that we trained and saved a minute ago, load a sample image (it can be created manually in any graphics editor, remembering that it has to be 28 x 28 pixel and grayscale) and use the model to identify the digit by clicking `Identify!` button.
 
-As we tested the solution in dev environment and we see that it is totally amazing, we can prepare a deployment package. First we need to lock the dev environment in case that after some time we will need to recreate it. This will enforce `rsuite proj depsinst` to install exactly the same versions of R packages as used before. The project that we cloned from github is already locked (see the `env.lock` file in `deployment` folder) so it is not neceassary to lock it again, but if we were building the project from scratch, we would call:
+As we tested the solution in dev environment and we see that it is totally amazing, we can prepare a deployment package. First we need to lock the dev environment in case that after some time we will need to recreate it. This will enforce `rsuite proj depsinst` to install exactly the same versions of R packages as used before. The project that we cloned from github is already locked (see the `env.lock` file in `deployment` folder) so it is not necessary to lock it again, but if we were building the project from scratch, we would call:
 
 <pre>
 ...\Keras_and_Shiny\R><b>rsuite proj lock</b>
