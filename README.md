@@ -7,7 +7,7 @@
 - [Introduction](#introduction)
 - [Preliminary requirements](#preliminary-requirements)
 - [Recreating the case](#recreating-the-case)
-- [Additional links:](#additional-links)
+- [Additional links](#additional-links)
 
 <!-- markdown-toc end -->
 
@@ -120,7 +120,7 @@ When developing the project from scratch and having it under Git or SVN control,
 
 After the deployment package is build, we can see that it contains all scripts, our custom packages as binaries, all R dependencies installed and also the entire conda environment inside. Now you can unzip and run it on any machine that has the same OS (here: Windows x64) and R installed. You do not have to install or configure anything more on production.
 
-## Additional links:
+## Additional links
 
 Presentation that shows how this case was built from scratch:
 
