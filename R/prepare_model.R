@@ -19,12 +19,12 @@ args <- args_parser()
 
 ###############################################################################
 
-library(DataPreparation)
-library(Modeling)
-
 # Force using local Python environment
 reticulate::use_python(python = file.path(script_path, "..", "conda"), require = TRUE)
-loginfo("Python initialized")
+loginfo("Python initialized.")
+
+library(DataPreparation)
+library(Modeling)
 
 ### 1. DATA PREPARATION
 

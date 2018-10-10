@@ -19,9 +19,9 @@ args <- args_parser()
 
 ###############################################################################
 
-
+# Force using local Python environment
 reticulate::use_python(python = file.path(script_path, "..", "conda"), require = TRUE)
-loginfo("Python initialized")
+loginfo("Python initialized.")
 
 library(Application)
 runApplication(ui, server, port = 4605)
