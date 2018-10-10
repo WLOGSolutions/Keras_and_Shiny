@@ -43,7 +43,7 @@ Then, we will need to install all external R dependencies of our custom packages
 ...\Keras_and_Shiny><b>rsuite proj depsinst</b>
 </pre>
 
-You can also use `-v` option when calling `depsinst` (or any other R Suite command) - "v" stands for "verbose" and it will cause showing additional detailed prints of the commands executed underneath - in this case you will be able to see which packages are being installed at the moment. If you don't use `-v` don't worry if the installation takes a few minutes and there's no console output - there are plenty of dependencies to download but at least you don't have to do it manually.
+You can also use `-v` option when calling `depsinst` (or any other R Suite command) - "v" stands for "verbose" and it will cause showing additional detailed logs of the commands executed underneath - in this case you will be able to see which packages are being installed at the moment. If you don't use `-v` don't worry if the installation takes a few minutes and there's no console output - there are plenty of dependencies to download but at least you don't have to do it manually.
 
 Next, as we will use `Keras` framework which requires Python, we need to build a local Python environment inside our project. This entire environment will be then embedded inside the deployment package, so there is no need to install Python on production. To build the Python (conda) enviroment, which was defined in `DESCRIPTION` file of `DataPreparation` package, we call (optionally with `-v`):
 
