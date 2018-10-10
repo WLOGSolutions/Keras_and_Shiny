@@ -1,13 +1,26 @@
-# Keras and Shiny
+# Showcase: the power of combining [GNU R](https://www.r-project.org/ "GNU R") and [Python](https://www.python.org/ "Python"). How to build deeplearning model for digit recognition using [Keras](https://keras.rstudio.com/) and deploy it as a [Shiny app](https://shiny.rstudio.com/ "Shiny app") with [R Suite](https://rsuite.io).
 
-This is a showcase based on the tutorial presented at ML@Enterprise Forum 2018 in Warsaw. It is intended to show how you can get what's best in R (e.g. [Shiny applications](https://shiny.rstudio.com/)) and in Python (e.g. [Keras framework](https://keras.io/)) and combine it to get a ready-to-deploy package thanks to [R Suite toolset](https://rsuite.io/).
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
 
-Going through this instruction, you should be able to:   
+- [Introduction](#introduction)
+- [Preliminary requirements](#preliminary-requirements)
+- [Recreating the case](#recreating-the-case)
+- [Additional links:](#additional-links)
 
-1. Recreate development environment,   
-2. Build a CNN model for digit reconition,   
-3. Run a web app that uses created model to recognize new examples,   
-4. Create a deployment package ready for production.  
+<!-- markdown-toc end -->
+
+
+## Introduction ##
+
+This is a showcase based on the tutorial presented at [ML@Enterprise Forum 2018](https://mlforum.pl/) in Warsaw. It is intended to show how you can get what's best in [GNU R](https://www.r-project.org/ "GNU R") (e.g. [Shiny applications](https://shiny.rstudio.com/)) and in Python (e.g. [Keras framework](https://keras.io/)) and combine it to get a ready-to-deploy package thanks to [R Suite toolset](https://rsuite.io/).
+
+Going through this instruction, you should be able to: 
+
+1. Recreate development environment,
+2. Build a CNN model for digit reconition,
+3. Run a web app that uses created model to recognize new examples,
+4. Create a deployment package ready for production.
 
 The instruction shows how to recreate development environment starting from cloning this repository. If you would like to see how such solution is built from scratch or just see the result (the deployment package) please go to the bottom of this document where you can find adequate links.
 
@@ -17,10 +30,10 @@ This particular case was developed and built for Windows x64, however all tools 
 
 Tools used for development (with versions):
 
-* [R (for Windows)](https://cran.r-project.org/bin/windows/base/) [3.5.1]   
-* [RStudio](https://www.rstudio.com/products/rstudio/download/) [1.1.456]   
-* [R Suite CLI](http://rsuite.io/RSuite_Download.php) [0.32-245]   
-* [Miniconda](https://conda.io/miniconda.html) [4.5.11]   
+* [R (for Windows)](https://cran.r-project.org/bin/windows/base/) [3.5.1]
+* [RStudio](https://www.rstudio.com/products/rstudio/download/) [1.1.456]
+* [R Suite CLI](http://rsuite.io/RSuite_Download.php) [0.32-245]
+* [Miniconda](https://conda.io/miniconda.html) [4.5.11]
 
 To be able to build models, you will also need to download and unzip training/validation and test datasets (handwritten MNIST digits).
 
@@ -112,7 +125,7 @@ Presentation that shows how this case was built from scratch:
 
 [Link to the presentation](https://s3.eu-central-1.amazonaws.com/wlog-share/keras_and_shiny_showcase/keras_and_shiny_eng_summary.pdf)
 
-Already build deployment package for Windows:
+Already build deployment package for Windows (just download, unzip and have fun :) ):
 
 [Link to the deployment package](https://s3.eu-central-1.amazonaws.com/wlog-share/keras_and_shiny_showcase/Keras_and_Shiny_1.0x.zip)
 
