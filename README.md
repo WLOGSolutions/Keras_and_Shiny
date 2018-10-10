@@ -26,7 +26,7 @@ To be able to build models, you will also need to download and unzip training/va
 
 You can go either with the full dataset ([download MNIST full dataset](https://s3.eu-central-1.amazonaws.com/wlog-share/keras_and_shiny_showcase/mnist_png_full.zip)) which contains 60k examples for training and 10k for testing or a sample ([download MNIST sample](https://s3.eu-central-1.amazonaws.com/wlog-share/keras_and_shiny_showcase/mnist_png.zip)) which has 10k for training and 2.5k for testing.
 
-Of course with the full dataset the model will be significalny more accurate, but the time for image processing, training and testing will be also much longer. On my 4-core/8-thread Core i7 I was able to build a model on full dataset in about 40 minutes and it had train/val/test accuracy about 98% / 97% / 97%. With just the sample, model building took 8 minutes but the quality was like 94% / 92% / 90%, with exactly the same settings.
+Of course with the full dataset the model will be significantlny more accurate, but the time for image processing, training and testing will be also much longer. On my 4-core/8-thread Core i7 I was able to build a model on full dataset in about 40 minutes and it had train/val/test accuracy about 98% / 97% / 97%. With just the sample, model building took 8 minutes but the quality was like 94% / 92% / 90%, with exactly the same settings.
 
 ## Recreating the case
 
@@ -43,7 +43,9 @@ Then, we will need to install all external R dependencies of our custom packages
 ...\Keras_and_Shiny><b>rsuite proj depsinst</b>
 </pre>
 
-Next, as we will use `Keras` framework which requires Python, we need to build a local Python environment inside our project. This entire environment will be then embedded inside the deployment package, so there is no need to install Python on production. To build the Python (conda) enviroment, which was defined in `DESCRIPTION` file of `DataPreparation` package, we call:
+You can also use `-v` option when calling `depsinst` (or any other R Suite command) - "v" stands for "verbose" and it will cause showing additional detailed prints of the commands executed underneath - in this case you will be able to see which packages are being installed at the moment. If you don't use `-v` don't worry if the installation takes a few minutes and there's no console output - there are plenty of dependencies to download but at least you don't have to do it manually.
+
+Next, as we will use `Keras` framework which requires Python, we need to build a local Python environment inside our project. This entire environment will be then embedded inside the deployment package, so there is no need to install Python on production. To build the Python (conda) enviroment, which was defined in `DESCRIPTION` file of `DataPreparation` package, we call (optionally with `-v`):
 
 <pre>
 ...\Keras_and_Shiny><b>rsuite sysreqs install</b>
@@ -70,7 +72,7 @@ As the master script for model building (`prepare_model.R`) will now know where 
 ...\Keras_and_Shiny\R><b>rscript prepare_model.R</b>
 </pre>
 
-The script will read all images from the given `data_path`, pre-process them, train and test the CNN model and save the model in HDF5 format into `model` folder insinde the main project folder.
+The script will read all images from the given `data_path`, pre-process them, train and test the CNN model and save the model in HDF5 format into `model` folder inside the main project folder.
 
 Model has the following architecture:
 
@@ -82,13 +84,13 @@ Having a model, we can now run the Shiny application and see what it can do:
 ...\Keras_and_Shiny\R><b>rscript app.R</b>
 </pre>
 
-In a web browser, under `http://localhost:4605`, we should be able to see the application running:
+In a web browser, under [http://localhost:4605](http://localhost:4605), we should be able to see the application running:
 
 ![](https://s3.eu-central-1.amazonaws.com/wlog-share/keras_and_shiny_showcase/application.png)
 
-The app allows to read the HDF5 model that we trained and save a minute ago, load a sample image (it can be created manually in any graphics editor, remebering that it has to be 28 x 28 pixel and grayscale) and use the model to identify the digit by clicking `Identify!` button.
+The app allows to read the HDF5 model that we trained and saved a minute ago, load a sample image (it can be created manually in any graphics editor, remembering that it has to be 28 x 28 pixel and grayscale) and use the model to identify the digit by clicking `Identify!` button.
 
-As we tested the solution in dev environment and we see that it is totally amazing, we can prepare a deployment package. First we need to lock the dev environment in case that after some time we will need to recreate it. This will enforce `rsuite proj depsinst` to install exactly the same versions of R packages as used before. The project that we cloned from github is already locked (see the `env.lock` file in `deployment` folder) so it is not necceassary to lock it again, but if we were building the project from scratch, we would call:
+As we tested the solution in dev environment and we see that it is totally amazing, we can prepare a deployment package. First we need to lock the dev environment in case that after some time we will need to recreate it. This will enforce `rsuite proj depsinst` to install exactly the same versions of R packages as used before. The project that we cloned from github is already locked (see the `env.lock` file in `deployment` folder) so it is not neceassary to lock it again, but if we were building the project from scratch, we would call:
 
 <pre>
 ...\Keras_and_Shiny\R><b>rsuite proj lock</b>
@@ -100,7 +102,7 @@ The final step is to build a deployment package which as simple as:
 ...\Keras_and_Shiny\R><b>rsuite proj zip --version 1.0</b>
 </pre>
 
-When developing the project from scratch and having it under Git or SVN control, we would not need to manually provide `--version`. Also if we can build the package in a specific directory we can add option for path, e.g. `-p C:\Users\Ja\Desktop\`.
+When developing the project from scratch and having it under Git or SVN control, we would not need to manually provide `--version`. Also if we want to build the package in a specific directory we can add option for path, e.g. `-p C:\Users\Ja\Desktop\`.
 
 After the deployment package is build, we can see that it contains all scripts, our custom packages as binaries, all R dependencies installed and also the entire conda environment inside. Now you can unzip and run it on any machine that has the same OS (here: Windows x64) and R installed. You do not have to install or configure anything more on production.
 
